@@ -1,5 +1,5 @@
 {
-  "name": "ui",
+  "name": "every-layout",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -21,9 +21,14 @@
     "@types/react-dom": "^18.2.1",
     "eslint": "8.39.0",
     "eslint-config-custom": "*",
-    "react": "18.2.0",
+    "react": "^18.2.0",
+    "styled-jsx": "5.1.2",
     "tsconfig": "*",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4"
+  },
+  "peerDependencies": {
+    "clsx": "1.2.1",
+    "styled-jsx": "5.1.2"
   }
 }

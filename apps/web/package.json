@@ -9,17 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "clsx": "1.2.1",
+    "eslint": "8.39.0",
+    "eslint-plugin-react": "7.32.2",
+    "every-layout": "*",
     "next": "latest",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "ui": "*"
   },
   "devDependencies": {
-    "@types/node": "^17.0.12",
-    "@types/react": "^18.0.22",
-    "@types/react-dom": "^18.0.7",
+    "@types/node": "18.16.2",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
     "eslint-config-custom": "*",
-    "tsconfig": "*",
-    "typescript": "^4.5.3"
+    "tsconfig": "7.0.0",
+    "typescript": "5.0.4"
   }
 }

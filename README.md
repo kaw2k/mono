@@ -79,3 +79,50 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
+## Ideas
+
+Apps
+
+- verses-web
+- verses-desktop
+- verses-mobile
+- resume
+- pausibly-v2
+- bhakti-songs
+
+Packages
+
+- ajax
+  - get
+  - post
+  - put
+  - delete
+- helper-types
+  - Opaque
+  - Id
+- every-layout
+  - web
+    - vstack
+    - hstack
+    - ...
+  - native
+    - vstack
+    - hstack
+    - ...
+  - have this be css based with css variables. see if we can get importing of css from a component. if not we can just export the css at the root level
+- firebase-helpers
+- verses-shared
+- eslint
+- prettier
+- tsconfig
+
+## Todo
+
+- Make sure tests work
+- Build and host parts of the monorepo in vercel
+- Get react native working
+- Get Electron working
+- See if we can get an xcode project working
+
+https://nextexamples.vercel.app/example/electron-typescript
