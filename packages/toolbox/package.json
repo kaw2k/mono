@@ -1,0 +1,25 @@
+{
+  "name": "toolbox",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup index.ts --format esm,cjs --dts --external react",
+    "clean": "rm -rf dist",
+    "dev": "tsup index.ts --format esm,cjs --watch --dts --external react"
+  },
+  "devDependencies": {
+    "eslint": "8.39.0",
+    "eslint-config-custom": "*",
+    "tsconfig": "*",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4"
+  }
+}

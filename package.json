@@ -12,6 +12,11 @@
     "prettier": "2.8.8",
     "turbo": "latest"
   },
+  "packageManager": "npm@9.5.1",
+  "engines": {
+    "node": "18.16.0",
+    "npm": "9.5.1"
+  },
   "name": "another",
   "workspaces": [
     "apps/*",
