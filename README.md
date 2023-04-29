@@ -99,8 +99,6 @@ Packages
   - put
   - delete
 - helper-types
-  - Opaque
-  - Id
 - every-layout
   - web
     - vstack
@@ -119,10 +117,13 @@ Packages
 
 ## Todo
 
-- Make sure tests work
-- Build and host parts of the monorepo in vercel
 - Get react native working
 - Get Electron working
 - See if we can get an xcode project working
+- Figure out how to get autoimports working. Only things referenced via index are auto imported
+- Make sure tests work
+  - E2E / Component
+    - Get tests running either pre-pull request, or after the pull-request environment is deployed and test agains that
+    - Get tests running as a watch script
 
 https://nextexamples.vercel.app/example/electron-typescript

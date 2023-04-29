@@ -4,16 +4,15 @@
   "private": true,
   "license": "MIT",
   "sideEffects": false,
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "index.ts",
   "files": [
-    "dist/**"
+    "helpers/**",
+    "types/**"
   ],
   "scripts": {
     "build": "tsup index.ts --format esm,cjs --dts --external react",
     "clean": "rm -rf dist",
-    "dev": "tsup index.ts --format esm,cjs --watch --dts --external react"
+    "dev": "tsup index.ts helpers/**/*.ts types/**/*.ts --format esm,cjs --watch --dts --external react"
   },
   "devDependencies": {
     "eslint": "8.39.0",

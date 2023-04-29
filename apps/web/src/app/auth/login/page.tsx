@@ -3,6 +3,7 @@
 import { Button } from 'every-layout'
 import { HStack } from 'every-layout/src/web/hstack'
 import { VStack } from 'every-layout/src/web/vstack'
+import { lipsum } from 'toolbox/helpers/text'
 
 export default function Login() {
   return (
@@ -12,9 +13,9 @@ export default function Login() {
       <Button />
 
       <HStack space="1em">
-        <p>one</p>
-        <p>one</p>
-        <p>one</p>
+        <p>{lipsum('sentence', 1)}</p>
+        <p>{lipsum('sentence', 1)}</p>
+        <p>{lipsum('sentence', 1)}</p>
       </HStack>
 
       <VStack space="1em">

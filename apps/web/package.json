@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
+    "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\"",
+    "component": "cypress open --component",
+    "component:headless": "cypress run --component"
   },
   "dependencies": {
     "clsx": "1.2.1",
@@ -16,13 +20,14 @@
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "ui": "*",
-    "toolbox": "*"
+    "toolbox": "*",
+    "ui": "*"
   },
   "devDependencies": {
     "@types/node": "18.16.2",
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
+    "cypress": "^12.11.0",
     "eslint-config-custom": "*",
     "tsconfig": "7.0.0",
     "typescript": "5.0.4"

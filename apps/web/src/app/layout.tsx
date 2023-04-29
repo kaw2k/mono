@@ -1,5 +1,3 @@
-import { Opaque, text } from 'toolbox'
-
 export default function RootLayout({
   children,
 }: {
