@@ -1,9 +1,13 @@
 'use client'
 
+import type { FlexAlign, FlexJustify } from './types'
+
 type Props = React.PropsWithChildren<{
   space?: string
   wrap?: boolean
   component?: string
+  justify?: FlexJustify
+  align?: FlexAlign
 }>
 
 export function HStack({

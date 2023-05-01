@@ -1,6 +1,6 @@
+import { HStack } from 'every-layout/src/web/hstack'
+import { VStack } from 'every-layout/src/web/vstack'
 import Link from 'next/link'
-import HStack from '../../components/layouts/hstack'
-import VStack from '../../components/layouts/vstack'
 
 type Props = React.PropsWithChildren<{}>
 
@@ -10,9 +10,9 @@ export default function AuthLayout({ children }: Props) {
       <h1>Auth</h1>
       <nav>
         <HStack space="20px">
-          <Link href="/auth/login">login</Link>
-          <Link href="/auth/register">register</Link>
-          <Link href="/auth/forgot-password">forgot password</Link>
+          <Link href="/login">login</Link>
+          <Link href="/register">register</Link>
+          <Link href="/forgot-password">forgot password</Link>
         </HStack>
       </nav>
       <main>{children}</main>

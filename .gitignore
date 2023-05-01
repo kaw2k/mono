@@ -35,4 +35,7 @@ yarn-error.log*
 # vercel
 .vercel
 
-dist
+dist/
+
+**/cypress/screenshots
+**/cypress/videos

@@ -1,1 +1,2 @@
-export { Button } from './Button'
+const title = 'every layout'
+export default title
