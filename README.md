@@ -124,6 +124,7 @@ Packages
 - Make sure tests work
   - E2E / Component
     - Get tests running either pre-pull request, or after the pull-request environment is deployed and test agains that
-    - Get tests running as a watch script
+    - Figure out if I want both Jest and Cypress
+    - One single sinstance of cypress for the entire repo vs individual instances
 
 https://nextexamples.vercel.app/example/electron-typescript

@@ -1,0 +1,37 @@
+{
+  "name": "verses-shared",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react",
+    "clean": "rm -rf dist",
+    "dev": "tsup src/index.tsx --format esm,cjs --watch --dts --external react",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "generate": "npm run generate:verses && npm run generate:verses-compressed",
+    "generate:verses": "tsnd generate-data/verses-uncompressed.ts",
+    "generate:verses-compressed": "tsnd generate-data/verses-compressed.ts"
+  },
+  "dependencies": {
+    "toolbox": "*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.1",
+    "cypress": "^12.11.0",
+    "eslint": "8.39.0",
+    "eslint-config-custom": "*",
+    "react": "^18.2.0",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig": "*",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4"
+  }
+}

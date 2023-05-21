@@ -1,8 +1,6 @@
-// src/Button.tsx
-import { jsx } from "react/jsx-runtime";
-var Button = () => {
-  return /* @__PURE__ */ jsx("button", { children: "Boop" });
-};
+// src/index.tsx
+var title = "every layout";
+var src_default = title;
 export {
-  Button
+  src_default as default
 };

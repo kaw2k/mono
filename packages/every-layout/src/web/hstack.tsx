@@ -1,5 +1,6 @@
 'use client'
 
+import clsx from 'clsx'
 import type { FlexAlign, FlexJustify } from './types'
 
 type Props = React.PropsWithChildren<{
@@ -8,6 +9,7 @@ type Props = React.PropsWithChildren<{
   component?: string
   justify?: FlexJustify
   align?: FlexAlign
+  className?: string
 }>
 
 export function HStack({
@@ -15,11 +17,14 @@ export function HStack({
   space = '0',
   wrap,
   component = 'div',
+  align,
+  justify = 'flex-start',
+  className,
 }: Props) {
   const Tag = component as any
 
   return (
-    <Tag className="l-hstack">
+    <Tag className={clsx('l-hstack', className)}>
       {children}
 
       <style jsx>{`
@@ -27,6 +32,8 @@ export function HStack({
           display: flex;
           gap: ${space};
           flex-wrap: ${wrap ? 'wrap' : 'nowrap'};
+          align-items: ${align};
+          justify-content: ${justify};
         }
       `}</style>
     </Tag>

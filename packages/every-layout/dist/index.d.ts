@@ -1,3 +1,3 @@
-declare const Button: () => JSX.Element;
+declare const title = "every layout";
 
-export { Button };
+export { title as default };

@@ -3,23 +3,28 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 8080",
+    "dev": "next dev -p 8888",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npm run test:components && npm run test:e2e",
-    "test:components": "cypress run --component",
-    "test:e2e": "cypress run --e2e",
-    "test:watch": "cypress open"
+    "test": "run-s test:ci:*",
+    "test:watch": "cypress open",
+    "test:server": "run-s build 'start -- -p 8888'",
+    "test:ci": "start-server-and-test 'npm run dev -- -p 8888' http://localhost:8888 test",
+    "test:ci:components": "cypress run --component",
+    "test:ci:e2e": "cypress run --e2e"
   },
   "dependencies": {
     "clsx": "1.2.1",
     "eslint": "8.39.0",
     "eslint-plugin-react": "7.32.2",
     "every-layout": "*",
-    "next": "latest",
+    "firebase": "^9.22.0",
+    "firebase-admin": "^11.8.0",
+    "next": "^13.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "server-only": "^0.0.1",
     "toolbox": "*",
     "ui": "*"
   },
@@ -29,6 +34,7 @@
     "@types/react-dom": "18.2.1",
     "cypress": "^12.11.0",
     "eslint-config-custom": "*",
+    "start-server-and-test": "^2.0.0",
     "tsconfig": "7.0.0",
     "typescript": "5.0.4"
   }

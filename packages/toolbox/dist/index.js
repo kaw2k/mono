@@ -29,7 +29,7 @@ module.exports = __toCommonJS(toolbox_exports);
 
 // types/id.ts
 var rand = () => Math.round(Math.random() * 1e7).toString();
-var Id = () => [rand(), rand(), rand(), rand()].join("-");
+var Id = (val) => val || [rand(), rand(), rand(), rand()].join("-");
 
 // helpers/shuffle.ts
 var shuffle = (originalArray) => {
