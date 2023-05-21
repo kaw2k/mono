@@ -5,18 +5,9 @@ import {
   VerseIdComponents,
   decodeVerseId,
 } from '../types/verse'
-import {
-  WrittenWorkCompressed,
-  WrittenWork,
-  WrittenWorkUncompressed,
-} from '../types/written-work'
-import dataCompressed from './written-works-compressed.json'
-import dataUncompressed from './written-works-uncompressed.json'
+import { WrittenWork } from '../types/written-work'
 
-const uncompressed = dataUncompressed as WrittenWorkUncompressed[]
-const compressed = dataCompressed as WrittenWorkCompressed[]
-
-class Store<V extends Verse | VerseCompressed> {
+export default class Store<V extends Verse | VerseCompressed> {
   type: 'compressed' | 'uncompressed'
   data: WrittenWork<V>[]
 
@@ -34,7 +25,7 @@ class Store<V extends Verse | VerseCompressed> {
   }
 
   getVerseById(verseId: VerseId): V | undefined {
-    const { bookId, chapter, verse, workId } = decodeVerseId(verseId)
+    const { workId } = decodeVerseId(verseId)
 
     return this.data
       .find((w) => w.id === workId)
@@ -74,10 +65,3 @@ class Store<V extends Verse | VerseCompressed> {
     }
   }
 }
-
-export const stores = {
-  compressed: Store.createCompressedStore(compressed),
-  uncompressed: Store.createUncompressedStore(uncompressed),
-}
-
-export default stores

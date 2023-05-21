@@ -3,6 +3,7 @@ import '../styles/globals.css'
 import '../styles/typography.css'
 import '../utils/firebase/client'
 import 'every-layout/src/index.css'
+import { Layout } from '../components/layouts'
 
 export default function RootLayout({
   children,
@@ -23,7 +24,9 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       </head>
-      <body>{children}</body>
+      <body>
+        <Layout>{children}</Layout>
+      </body>
     </html>
   )
 }

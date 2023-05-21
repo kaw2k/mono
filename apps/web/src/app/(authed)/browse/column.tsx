@@ -1,6 +1,6 @@
 'use client'
 
-import { TABLET } from '../../components/layouts'
+import { TABLET } from '../../../components/layouts'
 
 export const Column: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (

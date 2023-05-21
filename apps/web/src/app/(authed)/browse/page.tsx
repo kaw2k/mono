@@ -1,20 +1,13 @@
 'use client'
 
-import {
-  Layout,
-  LayoutBottomTabBar,
-  LayoutMain,
-  LayoutSideTabBar,
-} from '../../components/layouts'
 import React from 'react'
-import { stores } from 'verses-shared/data/store'
+import { ClientStore } from 'verses-shared/data/storeClient'
 import { Column } from './column'
 import { Row, RowHeader } from './row'
 import { VerseIdComponents, decodeVerseId } from 'verses-shared/types/verse'
-import { useRouter, useSearchParams } from 'next/navigation'
-import Link from 'next/link'
-
-const data = stores.compressed
+import { useSearchParams } from 'next/navigation'
+import { VStack } from 'every-layout/src/web/vstack'
+import { VerseDetail } from './verseDetail'
 
 interface QueryParams extends VerseIdComponents {}
 
@@ -22,7 +15,7 @@ export default function Test() {
   const query = useSearchParams()
 
   const { works, work, book, books, chapter, chapters, verse, verses } =
-    data.getBrowsingData({
+    ClientStore.getBrowsingData({
       bookId: query.get('bookId'),
       chapter: query.get('chapter'),
       verse: query.get('verse'),
@@ -49,7 +42,7 @@ export default function Test() {
 
     return (
       <Column>
-        <RowHeader backParams={{}}>Books</RowHeader>
+        <RowHeader canGoBack>Books</RowHeader>
         {books.map((book) => {
           return (
             <Row key={book.id} params={{ workId: work.id, bookId: book.id }}>
@@ -66,9 +59,7 @@ export default function Test() {
 
     return (
       <Column>
-        <RowHeader backParams={books.length > 1 ? { workId: work.id } : {}}>
-          Chapters
-        </RowHeader>
+        <RowHeader canGoBack>Chapters</RowHeader>
         {chapters.map((chapter) => {
           return (
             <Row
@@ -91,9 +82,7 @@ export default function Test() {
 
     return (
       <Column>
-        <RowHeader backParams={{ workId: work.id, bookId: book.id }}>
-          Verses
-        </RowHeader>
+        <RowHeader canGoBack>Verses</RowHeader>
         {verses.map((verse) => {
           const { verse: verseNumber } = decodeVerseId(verse[0])
           return (
@@ -105,7 +94,10 @@ export default function Test() {
                 chapter: chapter.number,
                 verse: verse[0],
               }}>
-              Verse {verseNumber}
+              <VStack>
+                <strong>Verse {verseNumber}</strong>
+                <p>{verse[1]}...</p>
+              </VStack>
             </Row>
           )
         })}
@@ -113,23 +105,13 @@ export default function Test() {
     )
   }
 
-  function VersesDetail() {
-    if (!verse) return null
-
-    return <div>{verse[0]}</div>
-  }
-
   return (
-    <Layout>
-      <LayoutMain>
-        <WorksColumn />
-        <BooksColumn />
-        <ChaptersColumn />
-        <VersesColumn />
-        <VersesDetail />
-      </LayoutMain>
-      <LayoutBottomTabBar>bottom tabs</LayoutBottomTabBar>
-      <LayoutSideTabBar>side tabs</LayoutSideTabBar>
-    </Layout>
+    <>
+      <WorksColumn />
+      <BooksColumn />
+      <ChaptersColumn />
+      <VersesColumn />
+      {verse && <VerseDetail verseId={verse[0]} />}
+    </>
   )
 }

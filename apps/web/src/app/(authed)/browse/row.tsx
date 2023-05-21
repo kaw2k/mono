@@ -1,8 +1,11 @@
 'use client'
 
 import clsx from 'clsx'
+import { HStack } from 'every-layout/src/web/hstack'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { VerseIdComponents } from 'verses-shared/types/verse'
+import { TABLET } from '../../../components/layouts'
 
 export const Row: React.FC<
   React.PropsWithChildren<{
@@ -16,7 +19,7 @@ export const Row: React.FC<
           <Link
             className="row-anchor"
             href={{
-              pathname: '/test',
+              pathname: '/browse',
               query: params,
             }}>
             {children}
@@ -39,21 +42,18 @@ export const Row: React.FC<
 
 export const RowHeader: React.FC<
   React.PropsWithChildren<{
-    backParams?: Partial<VerseIdComponents>
+    canGoBack?: boolean
   }>
-> = ({ children, backParams }) => {
+> = ({ children, canGoBack }) => {
+  const router = useRouter()
   return (
     <>
       <li className={clsx('root', 'sticky')}>
-        {backParams ? (
-          <Link
-            className="row-anchor"
-            href={{
-              pathname: '/test',
-              query: backParams,
-            }}>
-            back {children}
-          </Link>
+        {canGoBack ? (
+          <HStack className="row-anchor" space="1em" align="center">
+            <button onClick={router.back}>back</button>
+            <div>{children}</div>
+          </HStack>
         ) : (
           <div className="row-anchor">{children}</div>
         )}
@@ -69,6 +69,12 @@ export const RowHeader: React.FC<
           position: sticky;
           top: 0;
           background-color: white;
+        }
+
+        @media (min-width: ${TABLET}) {
+          button {
+            display: none;
+          }
         }
       `}</style>
     </>

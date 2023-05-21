@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 type Props = React.PropsWithChildren<{}>
 
-export default function AuthLayout({ children }: Props) {
+export default function UnauthLayout({ children }: Props) {
   return (
     <VStack space="20px">
       <h1>Auth</h1>
