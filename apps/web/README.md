@@ -1,8 +1,10 @@
 # Templates
 
-- Make sure both types are using the same ID structure
-- Import the store to access data
-- Make the get functions for the store
-- Import the 'server-only' package and make the library view server only
-- Figure out how to use client components from the server
-- Change the buttons to use links, have everything be either query params or slugs
+- Seperate out the stores so we don't call both all the time
+- Make an endpoint to fetch the full verse
+- Make a component to render the verse detail
+- Clean up this portion of the website
+  - Clean up CSS
+  - Clean up page names
+  - Add Routes utility for each page which we can import to call
+- Make theme context for styling
