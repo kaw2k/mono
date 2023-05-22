@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ClientStore } from 'verses-shared/data/storeClient'
 import { Column } from './column'
 import { Row, RowHeader } from './row'
@@ -11,7 +11,7 @@ import { VerseDetail } from './verseDetail'
 
 interface QueryParams extends VerseIdComponents {}
 
-export default function Test() {
+export default function Browse() {
   const query = useSearchParams()
 
   const { works, work, book, books, chapter, chapters, verse, verses } =
@@ -21,6 +21,14 @@ export default function Test() {
       verse: query.get('verse'),
       workId: query.get('workId'),
     })
+
+  useEffect(() => {
+    const el = document.querySelector('.layout-main')
+    el?.scrollTo({
+      left: el.scrollWidth,
+      behavior: 'smooth',
+    })
+  }, [verse, chapter, book, work])
 
   function WorksColumn() {
     return (
