@@ -85,6 +85,7 @@ export const VerseDetail: React.FC<VerseDetailProps> = ({ verseId }) => {
         @media screen and (min-width: ${TABLET}) {
           .root {
             min-width: 400px;
+            overflow-y: auto;
           }
           .back {
             border: none;
