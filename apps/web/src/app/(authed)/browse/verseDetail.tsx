@@ -64,7 +64,9 @@ export const VerseDetail: React.FC<VerseDetailProps> = ({ verseId }) => {
     <div className="root">
       <Box className="verse-detail-sticky">
         <HStack>
-          <Button onClick={router.back}>back</Button>
+          <Button className="verse-detail-back" onClick={router.back}>
+            back
+          </Button>
           <strong>{title}</strong>
         </HStack>
       </Box>
@@ -98,6 +100,10 @@ export const VerseDetail: React.FC<VerseDetailProps> = ({ verseId }) => {
         @media screen and (min-width: ${TABLET}) {
           .root {
             min-width: 400px;
+          }
+
+          :global(.verse-detail-back) {
+            display: none;
           }
         }
       `}</style>
