@@ -77,7 +77,7 @@ export default function Browse() {
                 bookId: book.id,
                 chapter: chapter.number,
               }}>
-              {chapter.title}
+              {chapter.number}. {chapter.title}
             </Row>
           )
         })}
