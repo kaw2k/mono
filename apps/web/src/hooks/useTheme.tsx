@@ -64,17 +64,13 @@ export const ThemeContextProvider = ({ children }) => {
     setMode(e.matches ? 'dark' : 'light')
   }, [])
 
-  const query = useMemo(
-    () => window?.matchMedia('(prefers-color-scheme: dark)'),
-    []
-  )
-
   useEffect(() => {
+    const query = window?.matchMedia('(prefers-color-scheme: dark)')
     query?.addEventListener('change', toggleTheme)
     return () => {
       query?.removeEventListener('change', toggleTheme)
     }
-  }, [toggleTheme, query])
+  }, [toggleTheme])
 
   return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
 }

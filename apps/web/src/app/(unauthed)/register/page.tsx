@@ -12,13 +12,13 @@ export default function Register() {
 
   return (
     <form onSubmit={onSubmit}>
-      <VStack space="1em">
+      <VStack>
         <h1>Register</h1>
-        <HStack gap="1em" align="center">
+        <HStack align="center">
           <label htmlFor="email">Email:</label>
           <input type="email" placeholder="email" name="email" />
         </HStack>
-        <HStack gap="1em" align="center">
+        <HStack align="center">
           <label htmlFor="password">Password:</label>
           <input type="password" placeholder="password" name="password" />
         </HStack>
