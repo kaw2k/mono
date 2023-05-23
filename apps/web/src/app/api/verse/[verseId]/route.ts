@@ -9,7 +9,6 @@ export async function GET(
 ) {
   const verseId = params.verseId
   const verse = ServerStore.getVerseById(verseId)
-  console.log(verseId, verse)
 
   if (verse) {
     return NextResponse.json(verse)

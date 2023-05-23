@@ -125,7 +125,7 @@ export const LayoutBottomTabBar: React.FC<{
     <style jsx>{`
       .layout-bottom-tab-bar {
         grid-area: bottom-tabs;
-        background-color: azure;
+        display: flex;
       }
     `}</style>
 
@@ -158,7 +158,6 @@ export const LayoutSideTabBar: React.FC<{
       .layout-side-tab-bar {
         grid-area: side-tabs;
         display: none;
-        background-color: bisque;
       }
     `}</style>
 
@@ -166,7 +165,8 @@ export const LayoutSideTabBar: React.FC<{
     <style jsx>{`
       @media screen and (min-width: ${TABLET}) {
         .layout-side-tab-bar {
-          display: block;
+          display: flex;
+          flex-flow: column;
         }
       }
     `}</style>

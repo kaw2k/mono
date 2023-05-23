@@ -4,6 +4,7 @@ import '../styles/typography.css'
 import '../utils/firebase/client'
 import 'every-layout/src/index.css'
 import { Layout } from '../components/layouts'
+import { ThemeContextProvider } from '../hooks/useTheme'
 
 export default function RootLayout({
   children,
@@ -25,7 +26,9 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       </head>
       <body>
-        <Layout>{children}</Layout>
+        <ThemeContextProvider>
+          <Layout>{children}</Layout>
+        </ThemeContextProvider>
       </body>
     </html>
   )

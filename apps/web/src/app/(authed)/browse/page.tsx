@@ -50,7 +50,7 @@ export default function Browse() {
 
     return (
       <Column>
-        <RowHeader canGoBack>Books</RowHeader>
+        <RowHeader canGoBack>{work.title}</RowHeader>
         {books.map((book) => {
           return (
             <Row key={book.id} params={{ workId: work.id, bookId: book.id }}>
@@ -67,7 +67,7 @@ export default function Browse() {
 
     return (
       <Column>
-        <RowHeader canGoBack>Chapters</RowHeader>
+        <RowHeader canGoBack>{book.title}</RowHeader>
         {chapters.map((chapter) => {
           return (
             <Row
@@ -90,7 +90,7 @@ export default function Browse() {
 
     return (
       <Column>
-        <RowHeader canGoBack>Verses</RowHeader>
+        <RowHeader canGoBack>Chapter {chapter.number}</RowHeader>
         {verses.map((verse) => {
           const { verse: verseNumber } = decodeVerseId(verse[0])
           return (
@@ -102,7 +102,7 @@ export default function Browse() {
                 chapter: chapter.number,
                 verse: verse[0],
               }}>
-              <VStack>
+              <VStack gap="-2">
                 <strong>Verse {verseNumber}</strong>
                 <p>{verse[1]}...</p>
               </VStack>

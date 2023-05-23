@@ -2,10 +2,11 @@
 
 import clsx from 'clsx'
 import { HStack } from 'every-layout/src/web/hstack'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { VerseIdComponents } from 'verses-shared/types/verse'
 import { TABLET } from '../../../components/layouts'
+import { Button, Link } from '../../../components/clickable'
+import { useTheme } from '../../../hooks/useTheme'
 
 export const Row: React.FC<
   React.PropsWithChildren<{
@@ -17,6 +18,7 @@ export const Row: React.FC<
       <li className={clsx('root')}>
         {params ? (
           <Link
+            variant="none"
             className="row-anchor"
             href={{
               pathname: '/browse',
@@ -46,12 +48,16 @@ export const RowHeader: React.FC<
   }>
 > = ({ children, canGoBack }) => {
   const router = useRouter()
+  const theme = useTheme()
+
   return (
     <>
       <li className={clsx('root', 'sticky')}>
         {canGoBack ? (
-          <HStack className="row-anchor" space="1em" align="center">
-            <button onClick={router.back}>back</button>
+          <HStack className="row-anchor" gap="0" align="center">
+            <Button className="row-button" onClick={router.back}>
+              back
+            </Button>
             <div>{children}</div>
           </HStack>
         ) : (
@@ -63,16 +69,15 @@ export const RowHeader: React.FC<
         :global(.row-anchor) {
           display: block;
           padding: 1em;
-          border-bottom: 1px solid #ccc;
         }
         .sticky {
           position: sticky;
           top: 0;
-          background-color: white;
+          background-color: ${theme.backgrounds.primary};
         }
 
         @media (min-width: ${TABLET}) {
-          button {
+          :global(.row-button) {
             display: none;
           }
         }

@@ -20,8 +20,18 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.tsx
 var src_exports = {};
 __export(src_exports, {
-  default: () => src_default
+  space: () => space
 });
 module.exports = __toCommonJS(src_exports);
-var title = "every layout";
-var src_default = title;
+
+// src/web/space.ts
+var ratio = 1.5;
+function space(space2, unit) {
+  const gap = typeof space2 === "string" ? parseInt(space2, 10) : space2;
+  const size = Math.pow(ratio, gap);
+  return unit ? `${size}${unit}` : size;
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  space
+});

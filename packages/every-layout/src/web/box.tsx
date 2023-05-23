@@ -1,18 +1,15 @@
 'use client'
 
 import clsx from 'clsx'
-import type { FlexJustify, FlexAlign } from './types'
 import { SpaceIncrements, space } from './space'
 
 type Props = React.PropsWithChildren<{
   gap?: SpaceIncrements
   component?: string
   className?: string
-  justify?: FlexJustify
-  align?: FlexAlign
 }>
 
-export function VStack({
+export function Box({
   className,
   children,
   gap = 0,
@@ -21,12 +18,12 @@ export function VStack({
   const Tag = component as any
 
   return (
-    <Tag className={clsx('l-vstack', className)}>
+    <Tag className={clsx('l-box', className)}>
       {children}
 
       <style jsx>{`
-        .l-vstack > :global(*) + :global(*) {
-          margin-top: ${space(gap, 'em')};
+        .l-box {
+          padding: ${space(gap, 'em')};
         }
       `}</style>
     </Tag>

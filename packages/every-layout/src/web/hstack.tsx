@@ -2,9 +2,10 @@
 
 import clsx from 'clsx'
 import type { FlexAlign, FlexJustify } from './types'
+import { SpaceIncrements, space } from './space'
 
 type Props = React.PropsWithChildren<{
-  space?: string
+  gap?: SpaceIncrements
   wrap?: boolean
   component?: string
   justify?: FlexJustify
@@ -14,10 +15,10 @@ type Props = React.PropsWithChildren<{
 
 export function HStack({
   children,
-  space = '0',
+  gap = 0,
   wrap,
   component = 'div',
-  align,
+  align = 'center',
   justify = 'flex-start',
   className,
 }: Props) {
@@ -30,7 +31,7 @@ export function HStack({
       <style jsx>{`
         .l-hstack {
           display: flex;
-          gap: ${space};
+          gap: ${space(gap, 'em')};
           flex-wrap: ${wrap ? 'wrap' : 'nowrap'};
           align-items: ${align};
           justify-content: ${justify};

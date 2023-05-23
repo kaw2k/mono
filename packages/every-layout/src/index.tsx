@@ -1,2 +1,1 @@
-const title = 'every layout'
-export default title
+export { space } from './web/space'
