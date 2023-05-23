@@ -54,6 +54,7 @@ const Clickable: React.FC<LinkProps | ButtonProps> = ({ ...props }) => {
       <style jsx>{`
         :global(.clickable-root) {
           display: inline-flex;
+          user-select: none;
         }
 
         :global(.clickable-variant--none) {
