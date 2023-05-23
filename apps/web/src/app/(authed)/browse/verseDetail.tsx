@@ -55,7 +55,10 @@ export const VerseDetail: React.FC<VerseDetailProps> = ({ verseId }) => {
   const router = useRouter()
   const data = useVerse(verseId)
 
-  const title = typeof data === 'object' ? data.writtenWorkId : 'Loading...'
+  const title =
+    typeof data === 'object'
+      ? `${data.writtenWorkId} ${data.chapterNumber}:${data.verseNumber}`
+      : 'Loading...'
 
   return (
     <div className="root">
