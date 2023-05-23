@@ -70,11 +70,11 @@ export const VerseDetail: React.FC<VerseDetailProps> = ({ verseId }) => {
         {data === 'loading' && 'loading...'}
         {data === 'not-found' && 'not found'}
         {typeof data === 'object' && (
-          <>
+          <VStack>
             <Sanskrit>{data.text}</Sanskrit>
             <Sanskrit>{data.synonyms}</Sanskrit>
             <p>{data.translation}</p>
-          </>
+          </VStack>
         )}
       </Box>
 
