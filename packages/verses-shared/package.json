@@ -17,21 +17,29 @@
     "lint": "eslint \"src/**/*.ts*\"",
     "generate": "npm run generate:verses && npm run generate:verses-compressed",
     "generate:verses": "tsnd generate-data/verses-uncompressed.ts",
-    "generate:verses-compressed": "tsnd generate-data/verses-compressed.ts"
+    "generate:verses-compressed": "tsnd generate-data/verses-compressed.ts",
+    "scrape:books": "tsnd scrape-data/scrape.ts"
   },
   "dependencies": {
     "toolbox": "*"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.31",
+    "@types/cli-progress": "^3.11.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",
+    "@types/yargs": "^17.0.24",
+    "cheerio": "^1.0.0-rc.12",
+    "cli-progress": "^3.12.0",
     "cypress": "^12.11.0",
     "eslint": "8.39.0",
     "eslint-config-custom": "*",
+    "isomorphic-unfetch": "^4.0.2",
     "react": "^18.2.0",
     "ts-node-dev": "^2.0.0",
     "tsconfig": "*",
     "tsup": "^6.7.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "yargs": "^17.7.2"
   }
 }

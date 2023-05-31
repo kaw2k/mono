@@ -48,7 +48,7 @@ const Clickable: React.FC<LinkProps | ButtonProps> = ({ ...props }) => {
         <button type="button" {...rest} className={classes} />
       )}
       {props.tag === 'link' && (
-        <NextLink {...(rest as any)} className={classes} />
+        <NextLink scroll={false} {...(rest as any)} className={classes} />
       )}
 
       <style jsx>{`

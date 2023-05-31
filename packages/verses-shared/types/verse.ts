@@ -26,17 +26,11 @@ export const decodeVerseId = (id: VerseId): VerseIdComponents => {
 
 export interface Verse {
   id: VerseId
-  bookId: string
-  writtenWorkId: string
-
-  chapterNumber: string
-  verseNumber: string
-
+  link: string
   text: string[]
   synonyms: string
   translation: string
-
-  order: number
+  purport: string[]
 }
 
 export type Translation = Opaque<'translation', string>

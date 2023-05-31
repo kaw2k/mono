@@ -1,14 +1,15 @@
 import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
+import { getLeaf } from 'verses-shared/data/getLeaf'
+import { LeafId } from 'verses-shared/types/Tree'
 import { VerseId } from 'verses-shared/types/verse'
-import { ServerStore } from 'verses-shared/data/storeServer'
 
 export async function GET(
   request: Request,
-  { params }: { params: { verseId: VerseId } }
+  { params }: { params: { verseId: LeafId } }
 ) {
   const verseId = params.verseId
-  const verse = ServerStore.getVerseById(verseId)
+  const verse = getLeaf(verseId)
 
   if (verse) {
     return NextResponse.json(verse)

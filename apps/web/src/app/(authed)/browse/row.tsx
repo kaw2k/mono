@@ -3,27 +3,20 @@
 import clsx from 'clsx'
 import { HStack } from 'every-layout/src/web/hstack'
 import { useRouter } from 'next/navigation'
-import { VerseIdComponents } from 'verses-shared/types/verse'
 import { TABLET } from '../../../components/layouts'
 import { Button, Link } from '../../../components/clickable'
 import { useTheme } from '../../../hooks/useTheme'
 
 export const Row: React.FC<
   React.PropsWithChildren<{
-    params?: Partial<VerseIdComponents>
+    href: string
   }>
-> = ({ children, params }) => {
+> = ({ children, href }) => {
   return (
     <>
       <li className={clsx('root')}>
-        {params ? (
-          <Link
-            variant="none"
-            className="row-anchor"
-            href={{
-              pathname: '/browse',
-              query: params,
-            }}>
+        {href ? (
+          <Link variant="none" className="row-anchor" href={href}>
             {children}
           </Link>
         ) : (

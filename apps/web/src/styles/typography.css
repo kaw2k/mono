@@ -9,3 +9,8 @@ h2 {
 h3 {
   font-size: em;
 }
+
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent; /* For some Androids */
+}
