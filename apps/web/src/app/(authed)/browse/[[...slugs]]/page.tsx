@@ -17,8 +17,6 @@ export default function Browse({ params: { slugs = [] } }: BrowseProps) {
   const columns = getBrowsingColumns(slugs)
   const leaf = getLeaf(path)
 
-  console.log(columns, columns[columns.length - 1].rows)
-
   return (
     <>
       <ScrollRight path={path} />

@@ -18,7 +18,7 @@
     "generate": "npm run generate:verses && npm run generate:verses-compressed",
     "generate:verses": "tsnd generate-data/verses-uncompressed.ts",
     "generate:verses-compressed": "tsnd generate-data/verses-compressed.ts",
-    "scrape:books": "tsnd scrape-data/scrape.ts"
+    "scrape": "tsnd scrape-data/scrape.ts"
   },
   "dependencies": {
     "toolbox": "*"

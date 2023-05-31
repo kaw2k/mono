@@ -12,25 +12,26 @@ async function scrape() {
   const bgTree = TreeClass.init(await scrapeBook(['bg']))
   const bgLeaves = await scrapeLeaves(bgTree)
 
-  const ccTree = TreeClass.init(await scrapeAnthology('cc'))
-  const ccLeaves = await scrapeLeaves(ccTree)
+  // const ccTree = TreeClass.init(await scrapeAnthology('cc'))
+  // const ccLeaves = await scrapeLeaves(ccTree)
 
-  const sbTree = TreeClass.init(await scrapeAnthology('sb'))
-  const sbLeaves = await scrapeLeaves(sbTree)
+  // const sbTree = TreeClass.init(await scrapeAnthology('sb'))
+  // const sbLeaves = await scrapeLeaves(sbTree)
 
   fs.writeFileSync(
     './data/trees.json',
     JSON.stringify([
       bsTree.toJSON(),
       bgTree.toJSON(),
-      ccTree.toJSON(),
-      sbTree.toJSON(),
+      // ccTree.toJSON(),
+      // sbTree.toJSON(),
     ])
   )
 
   fs.writeFileSync(
     './data/leaves.json',
-    JSON.stringify([...bsLeaves, ...bgLeaves, ...ccLeaves, ...sbLeaves])
+    // JSON.stringify([...bsLeaves, ...bgLeaves, ...ccLeaves, ...sbLeaves])
+    JSON.stringify([...bsLeaves, ...bgLeaves])
   )
 }
 
