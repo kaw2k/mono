@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
+import { ajax } from '../../fetch'
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FB_API_KEY,
@@ -22,14 +23,19 @@ export const app = getApps().length
 
 export const auth = getAuth()
 
-export function signIn(email: string, password: string) {
-  return signInWithEmailAndPassword(auth, email, password)
+export async function signIn(email: string, password: string) {
+  const user = await signInWithEmailAndPassword(auth, email, password)
+  ajax.setAuthToken(await user.user.getIdToken(true))
+  return user
 }
 
-export function register(email: string, password: string) {
-  return createUserWithEmailAndPassword(auth, email, password)
+export async function register(email: string, password: string) {
+  const user = await createUserWithEmailAndPassword(auth, email, password)
+  ajax.setAuthToken(await user.user.getIdToken(true))
+  return user
 }
 
 export function logout() {
+  ajax.clearAuthToken()
   return signOut(auth)
 }
