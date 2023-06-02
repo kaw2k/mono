@@ -1,8 +1,8 @@
-import { TreeClass, Leaf, LeafId } from '../../types/Tree'
+import { TreeIterator, Leaf, LeafId } from '../../types/Tree'
 import { scrapeVerse } from './scrapeVerse'
 import progress from 'cli-progress'
 
-export async function scrapeLeaves(tree: TreeClass): Promise<Leaf[]> {
+export async function scrapeLeaves(tree: TreeIterator): Promise<Leaf[]> {
   const chunkSize = 40
 
   let ids: LeafId[] = []

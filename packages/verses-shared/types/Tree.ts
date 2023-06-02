@@ -28,22 +28,22 @@ export interface Leaf {
   purport: Paragraph[]
 }
 
-export class TreeClass {
+export class TreeIterator {
   constructor(
     public id: string,
     public path: LeafId,
     public columnTitle: string,
     public title?: string,
-    public children?: TreeClass[]
+    public children?: TreeIterator[]
   ) {}
 
-  static init(tree: Tree): TreeClass {
-    return new TreeClass(
+  static init(tree: Tree): TreeIterator {
+    return new TreeIterator(
       tree.id,
       tree.path,
       tree.columnTitle,
       tree.title,
-      tree.children?.map(TreeClass.init)
+      tree.children?.map(TreeIterator.init)
     )
   }
 

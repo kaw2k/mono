@@ -1,7 +1,7 @@
 import $ from 'cheerio'
 import { sleep } from './sleep'
 import { getWebsite } from './getWebsite'
-import { Leaf, LeafId, Paragraph, splitLeafId } from '../../types/Tree'
+import { Leaf, LeafId, Paragraph, Verse, splitLeafId } from '../../types/Tree'
 
 function parseVerse($verses: cheerio.Cheerio): string[] {
   let $modified = $verses.clone()
@@ -42,12 +42,15 @@ export async function scrapeVerse(id: LeafId): Promise<Leaf> {
     '.wrapper-puport .r-paragraph, .wrapper-puport .r-verse-text'
   )
 
-  return {
+  const verse: Verse = {
     link: url,
     id: id,
     text: parseVerse($verse),
     synonyms: $synonyms.text(),
     translation: $translation.text(),
     purport: parsePurport($purport),
+    type: 'verse',
   }
+
+  return verse
 }

@@ -3,8 +3,12 @@ import leavesJson from './leaves.json'
 
 const leaves = leavesJson as Leaf[]
 
+interface LeafMetadata {}
+
 export function getLeaf(leafId: LeafId) {
-  return leaves.find((l) => {
+  const leaf = leaves.find((l) => {
     return l.id === leafId
   })
+
+  return leaf
 }
