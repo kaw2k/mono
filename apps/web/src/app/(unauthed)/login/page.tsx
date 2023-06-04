@@ -3,7 +3,9 @@
 import { HStack } from 'every-layout/src/web/hstack'
 import { VStack } from 'every-layout/src/web/vstack'
 import React from 'react'
-import { signIn } from '../../../utils/firebase/client'
+import { logout, signIn } from '../../../utils/firebase/client'
+import { Button } from '../../../components/clickable'
+import { ajax } from '../../../utils/fetch'
 
 export default function Login() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -27,7 +29,19 @@ export default function Login() {
           <label htmlFor="password">Password:</label>
           <input type="password" placeholder="password" name="password" />
         </HStack>
-        <button type="submit">Login</button>
+        <Button type="submit">Login</Button>
+        <Button
+          onClick={() => {
+            logout()
+          }}>
+          Logout
+        </Button>
+        <Button
+          onClick={() => {
+            ajax.get('/api/test')
+          }}>
+          test
+        </Button>
       </VStack>
     </form>
   )

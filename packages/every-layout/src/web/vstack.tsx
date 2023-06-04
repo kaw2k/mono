@@ -25,8 +25,10 @@ export function VStack({
       {children}
 
       <style jsx>{`
-        .l-vstack > :global(*) + :global(*) {
-          margin-top: ${space(gap, 'em')};
+        .l-vstack {
+          display: flex;
+          flex-flow: column;
+          gap: ${space(gap, 'em')};
         }
       `}</style>
     </Tag>

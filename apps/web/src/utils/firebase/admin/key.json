@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "bhaktivedanta-learning",
+  "private_key_id": "a89b728ff50a29ac28da7700364957ff84ee8f9f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDD6ZY4De4J6u9W\nYx65UmQoRr0ozmeyTcvevBProKzuV82W/NTyOf7cRyjxLw8FtLw04PUdo/Bqg+9o\n80rFZtzA1n3S/VysKgoC2qJydDT3ruFbyOMWenx0lvlx0wB+A5YchaxKebu1aERI\ncpCRcbVAYGFD4wPGydOu2SRmioow00+pL8KgdO7tdBKZOblB4TiqNpYVtoJ4srGV\nS6pbCSjh8OZmfgC23ULPNy0iw+6kgpaViwYukmzYIIygGU2Uikhr8X3BfGtbtvg0\npOPbfpbGA3BdQzz9gLNzXywsrIA2XicwIb/dfSBQFaN69tC/9PwMyivUh9qHVqM4\npQskqdUpAgMBAAECggEASEikrMzy8YTVxs1ulhkArF2hSG+TkhWjLWy+etc/Rvdt\nexKRLUhZsQOuZwKia8wKDwabWdLVjy9bw6DUiy4PMDVTmmfx6/Hc3L23ZzxaGLLV\nImzl4LLTvZ7ArY8ZJOWE2sQ1VAtDR0UPwJ1ImulV40lMSeR2Tb/E00P56r2eDDIc\n6QASnU1csVAj1sqyNPz3Y54akvfGNHE91fdVDqpO+GRgcApVtLMNg0xthUFUrlll\nkHCpqA2zw+RR6WYMdsl3SHQkr7Sigxh8ktuP+Hvmmtcc+BjeX0Wf1QcSeGvCozzv\nRBNzp+I6pUcccA3PGA/lymPK7pMNG2VePVDCnGW6swKBgQD6okRNwJPgMuqtRxkH\nomPui31IPlUEp4+KRmSyBxJL33T/NagCayso+F0W1AkhPxNKOLWSSwj00htC7O84\nI5TCcqcj9WBQkoJ1Yw2unYWIBAI84C7JA7sDKz/Tx3eOB8Zxtc+Cu5Jo+afGV4k3\nu302IQ8ZQ29LsI+NnIgdq/E58wKBgQDIG2PV1liC3d4QZcbiS4Q1n2NkutGPDOQi\n8w7PD0me7Nck3yt8hPP3Sj76cMTD8gTvvQJnfTWcXM/1LmHSGUs20Li+5QMs1Zz3\nXin6XJucNBae6GWtWcUwncMVo4kcxhDjXgO0+sRmvmFwCYOC5wk1eo9Gm9pAVNES\nZQtkFk4/cwKBgQCo8F2YBznmAowa9nSRp80ySsXMv28xLvzbGK3hLlEP4XSMXg98\nad5yxE6DB7OLvGd1PRpunLNRypnjl697qMgp9XxiCZC9XrQfCgB79eO/FeyoOfhv\nOFuDPFDOoIIes3D4zrMsDOEYb0e+stxkO7WfmdMClWjcnQt2Sc+aKH72LwKBgFze\nEUw5aOR7MUbs5Qs6vsXgDdG+veiks+/gW3wO/TzLb+GFzPnB/jNC+s1hrn+9fzr/\nvfDndAz4Ke8Aspc98+Ehpsu5Huscy/cldVfiyLkKl4DyG9YCtngkj1goiEaZSVcr\n146TXrjMHA5R6/3BWU2/bmT3iaeXdVwTFuFBVNkvAoGBAK59fHaDQSrMg0SVcsTs\n92JepJxkhJXAr0yHUcHW/ltKiVPgOI4LxTpswbXRgclc+j+YnWZLCH5T0QcrIrg5\na7XcuqpD6jLkncAWhWT1rQtqi9TIeCr9pDu7DW1rW/coAttoJ4DAE1riiAiHaJ1d\nwsPboGQ7AuwviHZ1FWsvij5O\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-vox5q@bhaktivedanta-learning.iam.gserviceaccount.com",
+  "client_id": "117227234086975762721",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-vox5q%40bhaktivedanta-learning.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
