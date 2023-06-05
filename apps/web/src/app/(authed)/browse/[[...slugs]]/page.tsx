@@ -3,60 +3,46 @@ import React, { useMemo } from 'react'
 import { Column } from './column'
 import { Row, RowHeader } from '../row'
 import { LeafDetail } from './leafDetail'
-import { getBrowsingColumns } from 'verses-shared/data/getBrowsingData'
-import { getLeaf } from 'verses-shared/data/getLeaf'
-import { LeafId, Tree, splitLeafId } from 'verses-shared/types/Tree'
+
+import { Node, PathId, Tree } from 'verses-shared/types/Tree'
 import { ScrollRight } from './scrollRight'
+import { getColumns } from 'verses-shared/data/getColumns'
 
 interface BrowseProps {
   params: { slugs: string[] }
 }
 
 export default function Browse({ params: { slugs = [] } }: BrowseProps) {
-  const path = useMemo(() => LeafId(slugs), [slugs])
-  const columns = getBrowsingColumns(slugs)
-  const leaf = getLeaf(path)
+  const path = useMemo(() => PathId(slugs), [slugs])
+  const columns = getColumns(path)
 
   return (
     <>
       <ScrollRight path={path} />
-      {columns.map(
-        ({ rows, selected, title, basePath }, i) =>
-          !!rows.length && (
-            <TreeColumn
-              rows={rows}
-              title={title}
-              key={rows.length + selected?.id}
-              columnIndex={i}
-              basePath={basePath}
-            />
-          )
-      )}
-
-      {leaf && <LeafDetail leaf={leaf} />}
+      {columns.map((tree, i) => {
+        return tree.type === 'leaf' ? (
+          <LeafDetail leaf={tree} key={tree.path} />
+        ) : (
+          <TreeColumn tree={tree} key={tree.path} />
+        )
+      })}
     </>
   )
 }
 
-function TreeColumn({
-  rows,
-  title,
-  basePath,
-  columnIndex,
-}: {
-  rows: Tree[]
-  columnIndex: number
-  title: string
-  basePath: string
-}) {
+function TreeColumn({ tree }: { tree: Node }) {
   return (
     <Column>
-      <RowHeader canGoBack={!!columnIndex}>{title}</RowHeader>
-      {rows.map((row) => {
-        const nextPath = `${basePath}/${row.id}`
+      <RowHeader canGoBack={tree.type !== 'explore'}>
+        {tree.title || tree.id}
+      </RowHeader>
+      {tree.children.map((childTree) => {
+        const nextPath = `/browse/${childTree.path}`
         return (
           <Row key={nextPath} href={nextPath}>
-            {row.title || row.id}
+            {childTree.type === 'leaf'
+              ? childTree.id
+              : childTree.title || childTree.id}
           </Row>
         )
       })}

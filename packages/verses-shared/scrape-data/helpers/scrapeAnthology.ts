@@ -1,6 +1,6 @@
 import $ from 'cheerio'
 import { getWebsite } from './getWebsite'
-import { LeafId, Tree } from '../../types/Tree'
+import { PathId, Tree, TreeId } from '../../types/Tree'
 import { scrapeBook } from './scrapeBook'
 
 export async function scrapeAnthology(id: string): Promise<Tree> {
@@ -27,5 +27,11 @@ export async function scrapeAnthology(id: string): Promise<Tree> {
     children.push(await scrapeBook([id, book]))
   }
 
-  return { id, title, children, path: LeafId([id]), columnTitle: 'Works' }
+  return {
+    id: TreeId(id),
+    title,
+    children,
+    path: PathId([id]),
+    type: 'work',
+  }
 }

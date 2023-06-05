@@ -1,6 +1,6 @@
 import $ from 'cheerio'
 import { scrapeChapter } from './scrapeChapter'
-import { LeafId, Tree } from '../../types/Tree'
+import { PathId, Tree, TreeId } from '../../types/Tree'
 import { getWebsite } from './getWebsite'
 
 export async function scrapeBrahmaSamhita(): Promise<Tree> {
@@ -14,10 +14,10 @@ export async function scrapeBrahmaSamhita(): Promise<Tree> {
   console.log(`Indexing Book: ${title}`)
 
   return {
-    id,
+    id: TreeId(id),
     title,
     children: [await scrapeChapter(['bs', '5'])],
-    path: LeafId([id]),
-    columnTitle: 'Works',
+    path: PathId([id]),
+    type: 'work',
   }
 }

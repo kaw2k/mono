@@ -1,14 +1,35 @@
-import { Leaf, LeafId } from '../types/Tree'
-import leavesJson from './leaves.json'
+import { Tree, Leaf, Node, PathId, splitPathId, TreeId } from '../types/Tree'
+import { isSubPath } from './isSubPath'
+import treesJson from './trees.json'
 
-const leaves = leavesJson as Leaf[]
+const trees = treesJson as Tree[]
 
-interface LeafMetadata {}
+type Falsey = undefined | null
 
-export function getLeaf(leafId: LeafId) {
-  const leaf = leaves.find((l) => {
-    return l.id === leafId
-  })
+type NodeWithoutChildren = Omit<Node, 'children'>
+type GetPathReturn = [...NodeWithoutChildren[], Leaf] | Falsey
 
-  return leaf
+export function getLeaf(pathId: PathId): GetPathReturn {
+  function getPath(tree: Tree | undefined): GetPathReturn {
+    // Not found
+    if (!tree) return
+
+    // Exact match
+    if (tree.type === 'leaf' && tree.path === pathId) {
+      return [tree]
+    }
+
+    // Node case
+    if (tree.type !== 'leaf') {
+      const { children, ...restOfTree } = tree
+      const res = getPath(children.find((t) => isSubPath(t, pathId)))
+      return res ? [restOfTree, ...res] : null
+    }
+
+    // Not found
+    return null
+  }
+
+  const firstId = splitPathId(pathId)[0]
+  return getPath(trees.find((t) => t.id === firstId))
 }

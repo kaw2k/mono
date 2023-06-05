@@ -1,8 +1,9 @@
 import $ from 'cheerio'
-import { LeafId, Tree } from '../../types/Tree'
+import { Node, PathId, TreeId } from '../../types/Tree'
 import { getWebsite } from './getWebsite'
+import { scrapeLeaves } from './scrapeLeaves'
 
-export async function scrapeChapter(ids: string[]): Promise<Tree> {
+export async function scrapeChapter(ids: string[]): Promise<Node> {
   const url = `https://vedabase.io/en/library/${ids.join('/')}`
 
   const lastId = ids[ids.length - 1]
@@ -13,26 +14,22 @@ export async function scrapeChapter(ids: string[]): Promise<Tree> {
   const $root = $(rawHtml)
   const title = $root.find('.r-chapter-title h1').text()
 
-  const children = $root
+  const pathIds = $root
     .find('.r-verse')
     .toArray()
     .map((e) => {
       const slugs = $(e).find('a').attr('href')?.split('/') || []
       return slugs[slugs.length - 2]
     })
-    .map((verseNumber): Tree => {
-      return {
-        id: verseNumber,
-        path: LeafId([...ids, verseNumber]),
-        columnTitle: 'Verses',
-      }
+    .map((verseNumber): PathId => {
+      return PathId([...ids, verseNumber])
     })
 
   return {
-    id: lastId,
+    type: 'chapter',
+    id: TreeId(lastId),
     title: title,
-    children,
-    path: LeafId(ids),
-    columnTitle: 'Chapters',
+    children: await scrapeLeaves(pathIds),
+    path: PathId(ids),
   }
 }

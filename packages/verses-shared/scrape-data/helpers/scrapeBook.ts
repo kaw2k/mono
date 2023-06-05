@@ -1,7 +1,8 @@
 import $ from 'cheerio'
 import { scrapeChapter } from './scrapeChapter'
-import { LeafId, Tree } from '../../types/Tree'
+import { PathId, Tree, TreeId } from '../../types/Tree'
 import { getWebsite } from './getWebsite'
+import progress from 'cli-progress'
 
 export async function scrapeBook(ids: string[]): Promise<Tree> {
   const url = `https://vedabase.io/en/library/${ids.join('/')}`
@@ -21,20 +22,24 @@ export async function scrapeBook(ids: string[]): Promise<Tree> {
     .filter((e) => /Chapter/i.test($(e).text()))
     .map((e) => {
       const slugs = $(e).attr('href')?.split('/') || []
-
       return slugs[slugs.length - 2]
     })
 
-  let children: Promise<Tree>[] = []
+  const bar = new progress.SingleBar(progress.Presets.shades_classic)
+  bar.start(chapters.length, 0)
+
+  let children: Tree[] = []
   for (let chapter of chapters) {
-    children.push(scrapeChapter([...ids, chapter]))
+    children.push(await scrapeChapter([...ids, chapter]))
+    bar.update(children.length)
   }
+  bar.stop()
 
   return {
-    id: lastId,
-    path: LeafId(ids),
+    id: TreeId(lastId),
+    path: PathId(ids),
     title,
-    children: await Promise.all(children),
-    columnTitle: 'Books',
+    children,
+    type: 'book',
   }
 }

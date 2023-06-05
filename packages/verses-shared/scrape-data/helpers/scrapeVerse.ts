@@ -1,7 +1,6 @@
 import $ from 'cheerio'
-import { sleep } from './sleep'
 import { getWebsite } from './getWebsite'
-import { Leaf, LeafId, Paragraph, Verse, splitLeafId } from '../../types/Tree'
+import { Leaf, PathId, splitPathId } from '../../types/Tree'
 
 function parseVerse($verses: cheerio.Cheerio): string[] {
   let $modified = $verses.clone()
@@ -13,7 +12,7 @@ function parseVerse($verses: cheerio.Cheerio): string[] {
   })
 }
 
-function parsePurport($purport: cheerio.Cheerio): Paragraph[] {
+function parsePurport($purport: cheerio.Cheerio): Leaf['purport'] {
   let $modified = $purport.clone()
 
   return $modified.toArray().map((e) => {
@@ -31,8 +30,9 @@ function parsePurport($purport: cheerio.Cheerio): Paragraph[] {
   })
 }
 
-export async function scrapeVerse(id: LeafId): Promise<Leaf> {
-  const url = `https://vedabase.io/en/library/${splitLeafId(id).join('/')}`
+export async function scrapeVerse(id: PathId): Promise<Leaf> {
+  const verseId = splitPathId(id)[splitPathId(id).length - 1]
+  const url = `https://vedabase.io/en/library/${splitPathId(id).join('/')}`
   const text = await getWebsite(url)
   const $root = $(text)
   const $verse = $root.find('.wrapper-verse-text .r-verse-text')
@@ -42,15 +42,16 @@ export async function scrapeVerse(id: LeafId): Promise<Leaf> {
     '.wrapper-puport .r-paragraph, .wrapper-puport .r-verse-text'
   )
 
-  const verse: Verse = {
+  const leaf: Leaf = {
     link: url,
-    id: id,
+    id: verseId,
+    path: id,
     text: parseVerse($verse),
     synonyms: $synonyms.text(),
     translation: $translation.text(),
     purport: parsePurport($purport),
-    type: 'verse',
+    type: 'leaf',
   }
 
-  return verse
+  return leaf
 }
