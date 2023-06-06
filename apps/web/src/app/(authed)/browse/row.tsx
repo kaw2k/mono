@@ -2,19 +2,27 @@
 
 import clsx from 'clsx'
 import { HStack } from 'every-layout/src/web/hstack'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname, useParams } from 'next/navigation'
 import { TABLET } from '../../../components/layouts'
 import { Button, Link } from '../../../components/clickable'
 import { useTheme } from '../../../hooks/useTheme'
+import { isSubPath } from 'verses-shared/data/isSubPath'
+import { PathId } from 'verses-shared/types/Tree'
 
 export const Row: React.FC<
   React.PropsWithChildren<{
     href: string
   }>
 > = ({ children, href }) => {
+  const { slugs } = useParams()
+  const isActive = isSubPath(
+    PathId(href.replace('/browse/', '').split('/')),
+    PathId((slugs || '').split('/'))
+  )
+
   return (
     <>
-      <li className={clsx('root')}>
+      <li className={clsx('root', { active: isActive })}>
         {href ? (
           <Link variant="none" className="row-anchor" href={href}>
             {children}
@@ -29,6 +37,9 @@ export const Row: React.FC<
           display: block;
           padding: 1em;
           border-bottom: 1px solid #ccc;
+        }
+        .active {
+          background-color: #eee;
         }
       `}</style>
     </>

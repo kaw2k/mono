@@ -1,5 +1,5 @@
 import { Tree, Leaf, Node, PathId, splitPathId, TreeId } from '../types/Tree'
-import { isSubPath } from './isSubPath'
+import { isTreeSubPath } from './isSubPath'
 import treesJson from './trees.json'
 
 const trees = treesJson as Tree[]
@@ -22,7 +22,7 @@ export function getLeaf(pathId: PathId): GetPathReturn {
     // Node case
     if (tree.type !== 'leaf') {
       const { children, ...restOfTree } = tree
-      const res = getPath(children.find((t) => isSubPath(t, pathId)))
+      const res = getPath(children.find((t) => isTreeSubPath(t, pathId)))
       return res ? [restOfTree, ...res] : null
     }
 

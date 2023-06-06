@@ -1,5 +1,5 @@
 import { Node, PathId, Tree, TreeId } from '../types/Tree'
-import { isSubPath } from './isSubPath'
+import { isTreeSubPath } from './isSubPath'
 import treesJson from './trees.json'
 
 const trees = treesJson as Tree[]
@@ -10,12 +10,12 @@ export function getColumns(pathId: PathId): Tree[] {
 
     if (tree.type === 'leaf') return [tree]
 
-    if (isSubPath(tree, pathId)) {
+    if (isTreeSubPath(tree, pathId)) {
       let children: Tree[] = []
       let selected: Tree[] | null | undefined = null
 
       tree.children.forEach((child) => {
-        if (isSubPath(child, pathId)) {
+        if (isTreeSubPath(child, pathId)) {
           selected = getData(child)
         }
 
@@ -40,7 +40,7 @@ export function getColumns(pathId: PathId): Tree[] {
     ),
   }
 
-  const firstNode = trees.find((t) => isSubPath(t, pathId))
+  const firstNode = trees.find((t) => isTreeSubPath(t, pathId))
 
   return [rootNode, ...(getData(firstNode) || [])]
 }
