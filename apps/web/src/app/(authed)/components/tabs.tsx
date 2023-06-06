@@ -11,6 +11,9 @@ export const Tabs: React.FC<{ type: 'vertical' | 'horizontal' }> = ({
   return (
     <ul className="root">
       <Link href="/browse">Browse</Link>
+      <Link href="#">Flashcards</Link>
+      <Link href="#">Learn</Link>
+      <Link href="#">Log out</Link>
 
       <style jsx>{`
         .root {
