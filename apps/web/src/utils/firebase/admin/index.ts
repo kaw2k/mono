@@ -12,3 +12,7 @@ if (!firebaseAdmin.apps.length) {
 }
 
 export const admin = firebaseAdmin
+
+export const validateToken = async (token: string) => {
+  return admin.auth().verifyIdToken(token)
+}

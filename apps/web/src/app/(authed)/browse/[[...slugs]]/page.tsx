@@ -32,10 +32,7 @@ export default function Browse({ params: { slugs = [] } }: BrowseProps) {
 
 function TreeColumn({ tree }: { tree: Node }) {
   return (
-    <Column>
-      <RowHeader canGoBack={tree.type !== 'explore'}>
-        {tree.title || tree.id}
-      </RowHeader>
+    <Column title={tree.title || tree.id} canGoBack={tree.type !== 'explore'}>
       {tree.children.map((childTree) => {
         const nextPath = `/browse/${childTree.path}`
         return (

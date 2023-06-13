@@ -1,10 +1,12 @@
 'use client'
 
 import clsx from 'clsx'
+import { Breakpoints } from 'every-layout/src/web/types'
 import React from 'react'
 
-export const TABLET = '900px'
-const DESKTOP = '1200px'
+export const MAX_MOBILE = `${Breakpoints.max_mobile}px`
+export const TABLET = `${Breakpoints.min_tablet}px`
+const DESKTOP = `${Breakpoints.min_desktop}px`
 
 export const Layout: React.FC<{
   children?: React.ReactNode
@@ -87,8 +89,10 @@ export const LayoutMain: React.FC<{
         overflow: hidden;
       }
 
-      .layout-main > :global(*:not(:last-child)) {
-        display: none;
+      @media screen and (max-width: ${MAX_MOBILE}) {
+        .layout-main > :global(*:not(:last-child)) {
+          display: none;
+        }
       }
     `}</style>
 
@@ -98,10 +102,6 @@ export const LayoutMain: React.FC<{
         .layout-main {
           display: flex;
           overflow-x: auto;
-        }
-
-        .layout-main > :global(*:not(:last-child)) {
-          display: unset;
         }
       }
     `}</style>

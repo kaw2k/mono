@@ -1,25 +1,95 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { TABLET } from '../../../../components/layouts'
+import { useTheme } from '../../../../hooks/useTheme'
+import { Button } from '../../../../components/clickable'
+import { HStack } from 'every-layout/src/web/hstack'
+import { VStack } from 'every-layout/src/web/vstack'
 
-export const Column: React.FC<React.PropsWithChildren> = ({ children }) => {
+interface ColumnProps extends React.PropsWithChildren {
+  title: string
+  canGoBack?: boolean
+}
+
+export const Column: React.FC<ColumnProps> = ({
+  children,
+  title,
+  canGoBack,
+}) => {
   return (
-    <>
-      <ul className="root">{children}</ul>
+    <div className="browse-column">
+      <ColumnTitle title={title} canGoBack={canGoBack} />
+
+      <VStack
+        component="ul"
+        scroll
+        className="browse-column--list"
+        safeArea={['m-b']}>
+        {children}
+      </VStack>
+
       <style jsx>{`
-        .root {
-          overflow-y: auto;
+        .browse-column {
           flex-grow: 1;
+          display: flex;
+          flex-flow: column;
         }
       `}</style>
 
       <style jsx>{`
         @media screen and (min-width: ${TABLET}) {
-          .root {
+          .browse-column {
             width: 300px;
             border-right: 1px solid #ccc;
             flex-grow: 0;
             flex-shrink: 0;
+          }
+        }
+      `}</style>
+    </div>
+  )
+}
+
+interface ColumnTitleProps {
+  canGoBack?: boolean
+  title: string
+}
+
+const ColumnTitle: React.FC<ColumnTitleProps> = ({ canGoBack, title }) => {
+  const router = useRouter()
+  const theme = useTheme()
+
+  return (
+    <>
+      <div className="root">
+        {canGoBack ? (
+          <HStack className="column-title-anchor" align="center">
+            <Button className="back-button" onClick={router.back}>
+              back
+            </Button>
+            <div>{title}</div>
+          </HStack>
+        ) : (
+          <div className="column-title-anchor">{title}</div>
+        )}
+      </div>
+
+      <style jsx>{`
+        .root {
+          background-color: ${theme.backgrounds.primary};
+          padding: 1em;
+          border-bottom: 1px solid #ccc;
+          flex-grow: 0;
+        }
+
+        :global(.column-title-anchor) {
+          display: block;
+        }
+
+        @media (min-width: ${TABLET}) {
+          :global(.back-button) {
+            display: none;
           }
         }
       `}</style>

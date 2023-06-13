@@ -15,3 +15,16 @@ export type FlexAlign =
   | 'center'
   | 'baseline'
   | 'stretch'
+
+export type SafeAreaBreakpoints = 'm' | 't' | 'd'
+export type SafeAreaSides = 't' | 'r' | 'b' | 'l'
+export type SafeArea = `${SafeAreaBreakpoints}-${SafeAreaSides}`
+
+export const Breakpoints = {
+  min_mobile: 0,
+  max_mobile: 899,
+  min_tablet: 900,
+  max_tablet: 1199,
+  min_desktop: 1200,
+  max_desktop: 9999999999,
+}

@@ -1,7 +1,8 @@
 'use client'
 
-import { Link } from '../../../components/clickable'
+import { Button, Link } from '../../../components/clickable'
 import { useTheme } from '../../../hooks/useTheme'
+import { auth } from '../../../utils/firebase/client'
 
 export const Tabs: React.FC<{ type: 'vertical' | 'horizontal' }> = ({
   type,
@@ -13,7 +14,9 @@ export const Tabs: React.FC<{ type: 'vertical' | 'horizontal' }> = ({
       <Link href="/browse">Browse</Link>
       <Link href="#">Flashcards</Link>
       <Link href="#">Learn</Link>
-      <Link href="#">Log out</Link>
+      <Button variant="link" onClick={() => auth.signOut()}>
+        Log out
+      </Button>
 
       <style jsx>{`
         .root {

@@ -3,18 +3,34 @@
 import { HStack } from 'every-layout/src/web/hstack'
 import { VStack } from 'every-layout/src/web/vstack'
 import React from 'react'
-import { logout, signIn } from '../../../utils/firebase/client'
+import { signIn } from '../../../utils/firebase/client'
 import { Button } from '../../../components/clickable'
-import { ajax } from '../../../utils/fetch'
 
 export default function Login() {
+  const [loading, setLoading] = React.useState(false)
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const { user } = await signIn(
-      e.currentTarget.email.value,
-      e.currentTarget.password.value
-    )
-    console.log(user)
+    try {
+      setLoading(true)
+      e.preventDefault()
+      await signIn(e.currentTarget.email.value, e.currentTarget.password.value)
+    } catch (e) {
+      if (typeof e === 'object' && 'code' in e) {
+        switch (e.code) {
+          case 'auth/wrong-password':
+            return alert('Wrong password')
+          case 'auth/user-not-found':
+            return alert('User not found')
+          case 'auth/too-many-requests':
+            return alert('Try again later')
+          default:
+            console.log(e)
+            return alert('Unknown error')
+        }
+      }
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -29,18 +45,8 @@ export default function Login() {
           <label htmlFor="password">Password:</label>
           <input type="password" placeholder="password" name="password" />
         </HStack>
-        <Button type="submit">Login</Button>
-        <Button
-          onClick={() => {
-            logout()
-          }}>
-          Logout
-        </Button>
-        <Button
-          onClick={() => {
-            ajax.get('/api/test')
-          }}>
-          test
+        <Button type="submit" disabled={loading}>
+          Login
         </Button>
       </VStack>
     </form>
