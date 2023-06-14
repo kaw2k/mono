@@ -17,13 +17,14 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
         />
         <meta name="application-name" content="MyApp" />
         <meta name="apple-mobile-web-app-title" content="MyApp" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="manifest" href="/manifest.json" />
       </head>
       <body>
         <Providers>

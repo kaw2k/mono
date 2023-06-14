@@ -1,5 +1,6 @@
 'use client'
 
+import { getSafeArea } from 'every-layout/src/web/helpers/safeAreas'
 import { Button, Link } from '../../../components/clickable'
 import { useTheme } from '../../../hooks/useTheme'
 import { auth } from '../../../utils/firebase/client'
@@ -21,7 +22,7 @@ export const Tabs: React.FC<{ type: 'vertical' | 'horizontal' }> = ({
       <style jsx>{`
         .root {
           padding: 1em;
-          padding-bottom: calc(1em + env(safe-area-inset-bottom));
+          padding-bottom: calc(2em + env(safe-area-inset-bottom));
           background-color: ${theme.backgrounds.primary};
           padding-left: max(env(safe-area-inset-left), 1em);
           gap: 1em;

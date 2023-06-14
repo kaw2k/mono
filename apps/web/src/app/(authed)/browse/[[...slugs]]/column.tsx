@@ -68,7 +68,7 @@ const ColumnTitle: React.FC<ColumnTitleProps> = ({ canGoBack, title }) => {
             <Button className="back-button" onClick={router.back}>
               back
             </Button>
-            <div>{title}</div>
+            <h3>{title}</h3>
           </HStack>
         ) : (
           <div className="column-title-anchor">{title}</div>

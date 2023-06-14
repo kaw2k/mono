@@ -41,7 +41,6 @@ export function VStack({
         .scroll {
           height: 100%;
           overflow-y: scroll;
-          overscroll-behavior: contain;
         }
 
         ${safeAreas.join('\n')}

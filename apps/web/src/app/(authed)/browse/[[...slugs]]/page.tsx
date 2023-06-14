@@ -1,7 +1,7 @@
 import 'server-only'
 import React, { useMemo } from 'react'
 import { Column } from './column'
-import { Row, RowHeader } from '../row'
+import { Row } from '../row'
 import { LeafDetail } from './leafDetail'
 
 import { Node, PathId, Tree } from 'verses-shared/types/Tree'

@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react'
-import { LeafId } from 'verses-shared/types/Tree'
+import { PathId } from 'verses-shared/types/Tree'
 
 export const ScrollRight: React.FC<{
-  path: LeafId
+  path: PathId
   scrollContainer?: string
 }> = ({ path, scrollContainer = '.layout-main' }) => {
   React.useEffect(() => {

@@ -1,0 +1,9 @@
+{
+  "name": "Bhaktivedanta Verses",
+  "short_name": "Verses",
+  "theme_color": "#FBFBF9",
+  "background_color": "#FBFBF9",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "landscape"
+}
