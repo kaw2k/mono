@@ -82,6 +82,8 @@ export const LeafDetail: React.FC<LeafDetailProps> = ({ leaf }) => {
       <style jsx>{`
         .root {
           flex-grow: 1;
+          display: flex;
+          flex-flow: column;
         }
       `}</style>
 
