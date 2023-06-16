@@ -1,3 +1,5 @@
+'use client'
+
 import { LocalStorage } from '../types/storage'
 
 export function makeLocalStorage<T>(key: string): LocalStorage<T> {
@@ -9,7 +11,7 @@ export function makeLocalStorage<T>(key: string): LocalStorage<T> {
 
   return {
     get: async () => {
-      return JSON.parse(localStorage.getItem(key) ?? '')
+      return JSON.parse(localStorage.getItem(key) ?? '""')
     },
     post: async (item: T) => {
       localStorage.setItem(key, JSON.stringify(item))

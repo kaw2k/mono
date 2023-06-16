@@ -4,6 +4,8 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth'
 import { ajax } from '../../fetch'
 
@@ -38,4 +40,11 @@ export async function register(email: string, password: string) {
 export function logout() {
   ajax.clearAuthToken()
   return signOut(auth)
+}
+
+const googleAuthProvider = new GoogleAuthProvider()
+export async function signInWithGoogle() {
+  const user = await signInWithPopup(auth, googleAuthProvider)
+  ajax.setAuthToken(await user.user.getIdToken(true))
+  return user
 }

@@ -8,6 +8,9 @@ import { HStack } from 'every-layout/src/web/hstack'
 import { Box } from 'every-layout/src/web/box'
 import { useTheme } from '../../../../hooks/useTheme'
 import { Leaf } from 'verses-shared/types/Tree'
+import { useAuth } from '../../../../providers/authProvider'
+import { useFlashcards } from '../../../../providers/flashcardProvider'
+import { FacetId, Steps, UserId } from 'verses-shared/types/flashcard'
 
 interface LeafDetailProps {
   leaf: Leaf
@@ -35,15 +38,28 @@ const Sanskrit: React.FC<React.PropsWithChildren<{ center?: boolean }>> = ({
 export const LeafDetail: React.FC<LeafDetailProps> = ({ leaf }) => {
   const theme = useTheme()
   const router = useRouter()
+  const { user, loading } = useAuth()
+  const flashcards = useFlashcards()
+
+  const hasFlashcard = flashcards.flashcards.find((f) => f.pathId === leaf.path)
+
+  function addFlashcard() {
+    if (loading || !user) return
+    flashcards.createFromLeaf(leaf, user.uid as UserId)
+  }
 
   return (
     <div className="root">
-      <Box>
-        <HStack>
-          <Button className="verse-detail-back" onClick={router.back}>
-            back
-          </Button>
-          <strong>title</strong>
+      <Box className="leaf-detail-header">
+        <HStack justify="space-between">
+          <HStack gap="0">
+            <Button className="verse-detail-back" onClick={router.back}>
+              back
+            </Button>
+            <strong>title</strong>
+          </HStack>
+          {user && !hasFlashcard && <Button onClick={addFlashcard}>Add</Button>}
+          {user && hasFlashcard && <Button disabled>Added</Button>}
         </HStack>
       </Box>
 
@@ -84,6 +100,11 @@ export const LeafDetail: React.FC<LeafDetailProps> = ({ leaf }) => {
           flex-grow: 1;
           display: flex;
           flex-flow: column;
+        }
+
+        :global(.leaf-detail-header) {
+          background-color: ${theme.backgrounds.primary};
+          border-bottom: 1px solid #ccc;
         }
       `}</style>
 

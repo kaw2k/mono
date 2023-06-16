@@ -3,16 +3,15 @@ import {
   LayoutMain,
   LayoutSideTabBar,
 } from '../../components/layouts'
-import { useAuth } from '../../providers/authProvider'
 import { Tabs } from './components/tabs'
-import { ValidateAuth } from './components/validateAuth'
+import { AuthListener } from './components/authListener'
 
 type Props = React.PropsWithChildren<{}>
 
 export default function AuthedLayout({ children }: Props) {
   return (
     <>
-      <ValidateAuth />
+      <AuthListener />
       <LayoutSideTabBar>
         <Tabs type="vertical" />
       </LayoutSideTabBar>
@@ -23,5 +22,3 @@ export default function AuthedLayout({ children }: Props) {
     </>
   )
 }
-
-export const runtime = 'nodejs'

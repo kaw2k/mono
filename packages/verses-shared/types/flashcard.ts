@@ -1,9 +1,12 @@
 import { Opaque } from 'toolbox/types/opaque'
-import { Verse } from './verse'
 import { Id } from 'toolbox/types/id'
+import { PathId } from './Tree'
 
-export type FlashcardId = Opaque<Id, 'flashcard id'>
-export const FlashcardId = (id: string) => id as FlashcardId
+export interface Facet {
+  id: FacetId
+  label: string
+  value: string
+}
 
 export interface Flashcard {
   id: FlashcardId
@@ -11,11 +14,7 @@ export interface Flashcard {
   subTitle?: string
   description?: string
   owner: UserId
-  facets: {
-    id: Opaque<string, 'facet id'>
-    label: string
-    value: string
-  }[]
+  facets: Facet[]
   step: Steps
   history: {
     date: string
@@ -23,11 +22,17 @@ export interface Flashcard {
     rating: Rating
   }[]
   dateAdded: string
-  verse?: Verse
+  pathId?: PathId
 }
+
+export type FlashcardId = Opaque<Id, 'flashcard id'>
+export const FlashcardId = (id: string) => id as FlashcardId
 
 export type UserId = Opaque<Id, 'user id'>
 export const UserId = (id: string) => id as UserId
+
+export type FacetId = Opaque<Id, 'faccet id'>
+export const FacetId = Id as (id?: string) => FacetId
 
 export interface User {
   id: UserId

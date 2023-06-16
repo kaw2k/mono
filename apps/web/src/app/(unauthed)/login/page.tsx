@@ -3,7 +3,7 @@
 import { HStack } from 'every-layout/src/web/hstack'
 import { VStack } from 'every-layout/src/web/vstack'
 import React from 'react'
-import { signIn } from '../../../utils/firebase/client'
+import { signIn, signInWithGoogle } from '../../../utils/firebase/client'
 import { Button } from '../../../components/clickable'
 
 export default function Login() {
@@ -35,19 +35,20 @@ export default function Login() {
 
   return (
     <form onSubmit={onSubmit}>
-      <VStack>
+      <VStack gap="0">
         <h1>Login</h1>
-        <HStack align="center">
+        <HStack align="center" justify="space-between">
           <label htmlFor="email">Email:</label>
           <input type="email" placeholder="email" name="email" />
         </HStack>
-        <HStack align="center">
+        <HStack align="center" justify="space-between">
           <label htmlFor="password">Password:</label>
           <input type="password" placeholder="password" name="password" />
         </HStack>
         <Button type="submit" disabled={loading}>
           Login
         </Button>
+        <Button onClick={signInWithGoogle}>Login with Google</Button>
       </VStack>
     </form>
   )

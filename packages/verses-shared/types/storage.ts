@@ -15,7 +15,6 @@ export interface Storage<T> {
   put(id: string, flashcard: T): Promise<T>
   post(flashcard: T): Promise<T>
   delete(id: string): Promise<void>
-  all(): Promise<T[]>
   query: <K extends keyof T>(
     args: [fieldPath: K, opStr: QueryFilterOperation, value: T[K]][]
   ) => Promise<T[]>

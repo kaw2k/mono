@@ -13,8 +13,8 @@ export const Tabs: React.FC<{ type: 'vertical' | 'horizontal' }> = ({
   return (
     <ul className="root">
       <Link href="/browse">Browse</Link>
-      <Link href="#">Flashcards</Link>
-      <Link href="#">Learn</Link>
+      <Link href="/flashcards">Flashcards</Link>
+      <Link href="/learn">Learn</Link>
       <Button variant="link" onClick={() => auth.signOut()}>
         Log out
       </Button>

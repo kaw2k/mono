@@ -1,3 +1,5 @@
+'use client'
+
 import {
   getFirestore,
   doc,
@@ -8,15 +10,13 @@ import {
   getDocs,
   where,
   query,
-  WhereFilterOp,
 } from 'firebase/firestore'
 import { Storage } from '../types/storage'
 
 type ObjectWithId = { id: string }
 
-export function makeFirebaseStorage<T extends ObjectWithId>(
-  collectionName: string,
-  whereAll: Parameters<typeof where>
+export function makeFirestoreStorageWeb<T extends ObjectWithId>(
+  collectionName: string
 ): Storage<T> {
   const db = getFirestore()
 
@@ -39,12 +39,6 @@ export function makeFirebaseStorage<T extends ObjectWithId>(
     delete: async (id: string) => {
       const docRef = doc(db, collectionName, id)
       await deleteDoc(docRef)
-    },
-    all: async () => {
-      const { docs } = await getDocs(
-        query(collection(db, collectionName), where(...whereAll))
-      )
-      return docs.map((doc) => doc.data() as T)
     },
     query: async (filters) => {
       const { docs } = await getDocs(
