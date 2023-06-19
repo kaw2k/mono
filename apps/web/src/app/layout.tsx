@@ -1,6 +1,7 @@
 import '../styles/reset.css'
 import '../styles/globals.css'
 import '../styles/typography.css'
+import '../styles/forms.css'
 import '../utils/firebase/client'
 import 'every-layout/src/index.css'
 import { Layout } from '../components/layouts'

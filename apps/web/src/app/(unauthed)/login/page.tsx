@@ -5,6 +5,7 @@ import { VStack } from 'every-layout/src/web/vstack'
 import React from 'react'
 import { signIn, signInWithGoogle } from '../../../utils/firebase/client'
 import { Button } from '../../../components/clickable'
+import { Center } from 'every-layout/src/web/center'
 
 export default function Login() {
   const [loading, setLoading] = React.useState(false)
@@ -34,22 +35,26 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <VStack gap="0">
-        <h1>Login</h1>
-        <HStack align="center" justify="space-between">
-          <label htmlFor="email">Email:</label>
-          <input type="email" placeholder="email" name="email" />
-        </HStack>
-        <HStack align="center" justify="space-between">
-          <label htmlFor="password">Password:</label>
-          <input type="password" placeholder="password" name="password" />
-        </HStack>
-        <Button type="submit" disabled={loading}>
-          Login
-        </Button>
-        <Button onClick={signInWithGoogle}>Login with Google</Button>
-      </VStack>
-    </form>
+    <Center>
+      <form onSubmit={onSubmit}>
+        <VStack gap>
+          <h1>Login</h1>
+          <VStack align="center" justify="space-between">
+            <label htmlFor="email">Email:</label>
+            <input type="email" placeholder="email" name="email" />
+          </VStack>
+          <VStack align="center" justify="space-between">
+            <label htmlFor="password">Password:</label>
+            <input type="password" placeholder="password" name="password" />
+          </VStack>
+          <HStack gap>
+            <Button onClick={signInWithGoogle}>Login with Google</Button>
+            <Button type="submit" disabled={loading}>
+              Login
+            </Button>
+          </HStack>
+        </VStack>
+      </form>
+    </Center>
   )
 }

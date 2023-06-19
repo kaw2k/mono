@@ -62,6 +62,8 @@ const Clickable: React.FC<LinkProps | ButtonProps> = ({ ...props }) => {
           user-select: none;
           -webkit-user-drag: none;
           -webkit-touch-callout: none;
+          cursor: pointer;
+          justify-content: center;
         }
 
         :global(.clickable-variant--none) {
@@ -87,6 +89,24 @@ const Clickable: React.FC<LinkProps | ButtonProps> = ({ ...props }) => {
         }
 
         :global(.clickable-variant--button) {
+          background-color: ${theme.palette.primary};
+          color: ${theme.type.secondary};
+          border: 1px solid ${theme.palette.primary};
+          border-radius: 3px;
+          padding: 0.3em 0.5em;
+          font-size: inherit;
+          transition: all 100ms ease-in-out;
+        }
+
+        :global(.clickable-variant--button:hover),
+        :global(.clickable-variant--button:active) {
+          background-color: white;
+          color: ${theme.palette.primary};
+        }
+
+        :global(.clickable-variant--button:active) {
+          background-color: white;
+          color: ${theme.palette.primaryDisabled};
         }
 
         :global(.clickable-variant--text) {

@@ -23,8 +23,11 @@ interface Theme {
   }
   palette: {
     primary: string
+    primaryDisabled: string
     secondary: string
+    secondaryDisabled: string
     tertiary: string
+    tertiaryDisabled: string
   }
 }
 
@@ -42,8 +45,11 @@ const lightTheme: Theme = {
   },
   palette: {
     primary: '#AC354B',
+    primaryDisabled: '#AC354B44',
     secondary: '#D9C5AB',
+    secondaryDisabled: '#D9C5AB44',
     tertiary: '#393939',
+    tertiaryDisabled: '#39393944',
   },
 }
 

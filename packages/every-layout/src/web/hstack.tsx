@@ -6,7 +6,7 @@ import { SpaceIncrements, space } from './space'
 import { getSafeArea } from './helpers/safeAreas'
 
 type Props = React.PropsWithChildren<{
-  gap?: SpaceIncrements
+  gap?: boolean | SpaceIncrements
   wrap?: boolean
   component?: string
   justify?: FlexJustify
@@ -28,7 +28,8 @@ export function HStack({
   className,
 }: Props) {
   const Tag = component as any
-  const hasGap = gap !== undefined
+  const hasGap = gap !== undefined && gap !== false
+  const adjustedGap = typeof gap === 'boolean' ? '0' : gap || '0'
   const safeAreas = safeArea.map((area) => getSafeArea(area, '.l-hstack'))
 
   return (
@@ -38,7 +39,7 @@ export function HStack({
       <style jsx>{`
         .l-hstack {
           display: flex;
-          gap: ${hasGap ? space(gap, 'em') : 0};
+          gap: ${hasGap ? space(adjustedGap, 'em') : 0};
           flex-wrap: ${wrap ? 'wrap' : 'nowrap'};
           align-items: ${align};
           justify-content: ${justify};

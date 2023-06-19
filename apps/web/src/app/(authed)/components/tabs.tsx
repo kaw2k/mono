@@ -11,7 +11,7 @@ export const Tabs: React.FC<{ type: 'vertical' | 'horizontal' }> = ({
   const theme = useTheme()
 
   return (
-    <ul className="root">
+    <ul className="root" test-id="tab-bar">
       <Link href="/browse">Browse</Link>
       <Link href="/flashcards">Flashcards</Link>
       <Link href="/learn">Learn</Link>

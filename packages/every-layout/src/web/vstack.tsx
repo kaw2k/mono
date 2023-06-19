@@ -6,7 +6,7 @@ import { SpaceIncrements, space } from './space'
 import { getSafeArea } from './helpers/safeAreas'
 
 type Props = React.PropsWithChildren<{
-  gap?: SpaceIncrements
+  gap?: SpaceIncrements | boolean
   component?: string
   className?: string
   justify?: FlexJustify
@@ -24,7 +24,8 @@ export function VStack({
   scroll,
 }: Props) {
   const Tag = component as any
-  const hasGap = gap !== undefined
+  const hasGap = gap !== undefined && gap !== false
+  const adjustedGap = typeof gap === 'boolean' ? '0' : gap || '0'
   const safeAreas = safeArea.map((area) => getSafeArea(area, '.l-vstack'))
 
   return (
@@ -35,7 +36,7 @@ export function VStack({
         .l-vstack {
           display: flex;
           flex-flow: column;
-          gap: ${hasGap ? space(gap, 'em') : 0};
+          gap: ${hasGap ? space(adjustedGap, 'em') : 0};
         }
 
         .scroll {

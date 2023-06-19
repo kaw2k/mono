@@ -6,6 +6,7 @@ import { register } from '../../../utils/firebase/client'
 import React from 'react'
 import { set } from 'cypress/types/lodash'
 import { Button } from '../../../components/clickable'
+import { Center } from 'every-layout/src/web/center'
 
 export default function Register() {
   const [loading, setLoading] = React.useState(false)
@@ -38,21 +39,23 @@ export default function Register() {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <VStack>
-        <h1>Register</h1>
-        <HStack align="center">
-          <label htmlFor="email">Email:</label>
-          <input type="email" placeholder="email" name="email" />
-        </HStack>
-        <HStack align="center">
-          <label htmlFor="password">Password:</label>
-          <input type="password" placeholder="password" name="password" />
-        </HStack>
-        <Button type="submit" disabled={loading}>
-          Register
-        </Button>
-      </VStack>
-    </form>
+    <Center>
+      <form onSubmit={onSubmit}>
+        <VStack gap>
+          <h1>Register</h1>
+          <VStack align="center">
+            <label htmlFor="email">Email:</label>
+            <input type="email" placeholder="email" name="email" />
+          </VStack>
+          <VStack align="center">
+            <label htmlFor="password">Password:</label>
+            <input type="password" placeholder="password" name="password" />
+          </VStack>
+          <Button type="submit" disabled={loading}>
+            Register
+          </Button>
+        </VStack>
+      </form>
+    </Center>
   )
 }

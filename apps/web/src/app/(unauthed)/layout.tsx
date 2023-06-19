@@ -3,23 +3,28 @@ import { VStack } from 'every-layout/src/web/vstack'
 import { Link } from '../../components/clickable'
 import { Box } from 'every-layout/src/web/box'
 import { ValidateUnauthed } from './components/validateUnauthed'
+import { LayoutMain } from '../../components/layouts'
+import { Center } from 'every-layout/src/web/center'
 
 type Props = React.PropsWithChildren<{}>
 
-export default function UnauthLayout({ children }: Props) {
+export default function UnauthedLayout({ children }: Props) {
   return (
-    <Box>
-      <ValidateUnauthed />
-      <VStack>
-        <h1>Auth</h1>
-        <nav>
-          <HStack gap={0}>
-            <Link href="/login">login</Link>
-            <Link href="/register">register</Link>
-          </HStack>
-        </nav>
-        <main>{children}</main>
-      </VStack>
-    </Box>
+    <LayoutMain>
+      <Center trueCenter>
+        <Box className="unauthed-root-layout">
+          <ValidateUnauthed />
+          <VStack gap={2}>
+            <main>{children}</main>
+            <nav>
+              <HStack gap={0} justify="space-around">
+                <Link href="/login">login</Link>
+                <Link href="/register">register</Link>
+              </HStack>
+            </nav>
+          </VStack>
+        </Box>
+      </Center>
+    </LayoutMain>
   )
 }
