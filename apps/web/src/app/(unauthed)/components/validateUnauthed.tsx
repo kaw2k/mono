@@ -10,7 +10,7 @@ export const ValidateUnauthed: React.FC = () => {
 
   React.useEffect(() => {
     if (user) {
-      push('/browse')
+      // push('/browse')
     }
   }, [user, push])
 

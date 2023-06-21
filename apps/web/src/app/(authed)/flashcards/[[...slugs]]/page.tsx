@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useMemo } from 'react'
+import React from 'react'
 import { useFlashcards } from '../../../../providers/flashcardProvider'
 import { VStack } from 'every-layout/src/web/vstack'
 import { Button } from '../../../../components/clickable'
@@ -20,7 +20,9 @@ export default function Browse({ params: { slugs = [] } }: BrowseProps) {
           <div key={f.id}>
             <h2>{f.title}</h2>
             <p>{f.pathId}</p>
-            <Button onClick={() => flashcards.delete(f)}>delete</Button>
+            <Button data-test="remove" onClick={() => flashcards.delete(f)}>
+              delete
+            </Button>
           </div>
         ))}
       </VStack>

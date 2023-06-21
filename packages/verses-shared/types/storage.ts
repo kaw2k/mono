@@ -21,7 +21,7 @@ export interface Storage<T> {
 }
 
 export interface LocalStorage<T> {
-  get(): Promise<T>
+  get(): Promise<T | undefined>
   post(item: T): Promise<void>
   delete(): Promise<void>
 }

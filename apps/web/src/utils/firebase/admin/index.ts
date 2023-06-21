@@ -1,12 +1,11 @@
 import firebaseAdmin from 'firebase-admin'
-import key from './key.json'
 
 if (!firebaseAdmin.apps.length) {
   firebaseAdmin.initializeApp({
     credential: firebaseAdmin.credential.cert({
-      clientEmail: key.client_email,
-      privateKey: key.private_key,
-      projectId: key.project_id,
+      clientEmail: process.env.FIREBASE_VERSES_ADMIN_CLIENT_EMAIL,
+      privateKey: process.env.FIREBASE_VERSES_ADMIN_PRIVATE_KEY,
+      projectId: process.env.FIREBASE_VERSES_ADMIN_PROJECT_ID,
     }),
   })
 }

@@ -1,36 +1,38 @@
 'use client'
 
-import { HStack } from 'every-layout/src/web/hstack'
 import { VStack } from 'every-layout/src/web/vstack'
 import { register } from '../../../utils/firebase/client'
 import React from 'react'
-import { set } from 'cypress/types/lodash'
 import { Button } from '../../../components/clickable'
 import { Center } from 'every-layout/src/web/center'
+import { useRouter } from 'next/navigation'
 
 export default function Register() {
   const [loading, setLoading] = React.useState(false)
+  const router = useRouter()
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
     try {
       setLoading(true)
-      e.preventDefault()
       await register(
         e.currentTarget.email.value,
         e.currentTarget.password.value
       )
+      router.push('/browse')
     } catch (e) {
       console.log(e)
       if (typeof e === 'object' && 'code' in e) {
         switch (e.code) {
           case 'auth/email-already-in-use':
-            return alert('Email already in use')
+            return window.alert('Email already in use')
           case 'auth/invalid-email':
-            return alert('Invalid email')
+            return window.alert('Invalid email')
           case 'auth/weak-password':
-            return alert('Weak password')
+            return window.alert('Weak password')
           default:
-            return alert('Unknown error')
+            return window.alert('Unknown error')
         }
       }
     } finally {

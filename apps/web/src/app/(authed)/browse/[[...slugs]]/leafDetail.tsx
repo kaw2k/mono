@@ -58,8 +58,16 @@ export const LeafDetail: React.FC<LeafDetailProps> = ({ leaf }) => {
             </Button>
             <strong>title</strong>
           </HStack>
-          {user && !hasFlashcard && <Button onClick={addFlashcard}>Add</Button>}
-          {user && hasFlashcard && <Button disabled>Added</Button>}
+          {user && !hasFlashcard && (
+            <Button data-test="add" onClick={addFlashcard}>
+              Add
+            </Button>
+          )}
+          {user && hasFlashcard && (
+            <Button data-test="added" disabled>
+              Added
+            </Button>
+          )}
         </HStack>
       </Box>
 

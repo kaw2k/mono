@@ -3,11 +3,10 @@
 import { LocalStorage } from '../types/storage'
 
 export function makeLocalStorage<T>(key: string): LocalStorage<T> {
-  if (!window || !window.localStorage) {
-    throw new Error('window.localStorage is not available')
-  }
-
-  const localStorage = window.localStorage
+  const localStorage =
+    typeof window === 'undefined' || !window.localStorage
+      ? makeDefaultLocalStorage(key)
+      : window.localStorage
 
   return {
     get: async () => {
@@ -18,6 +17,21 @@ export function makeLocalStorage<T>(key: string): LocalStorage<T> {
     },
     delete: async () => {
       localStorage.removeItem(key)
+    },
+  }
+}
+
+export function makeDefaultLocalStorage(key: string) {
+  let item: string | null = null
+
+  return {
+    getItem: () => item,
+
+    setItem: (nextItem: string) => {
+      item = nextItem
+    },
+    removeItem: () => {
+      item = null
     },
   }
 }

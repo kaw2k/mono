@@ -1,5 +1,6 @@
 'use client'
 
+import '../utils/firebase/client'
 import { makeFlashcardProvider } from 'verses-shared/makeProvider/makeFlashcardProvider'
 import { makeFirestoreStorageWeb } from 'verses-shared/makeStorage/makeFirestoreStorageWeb'
 import { makeLocalStorage } from 'verses-shared/makeStorage/makeLocalStorage'

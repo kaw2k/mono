@@ -34,7 +34,7 @@ export const makeFlashcardProvider = (
     const [flashcards, setFlashcards] = useState<Flashcard[]>([])
 
     useEffect(() => {
-      local.get().then(setFlashcards)
+      local.get().then((cards) => setFlashcards(cards || []))
     }, [])
 
     function generateFacet(facet: Omit<Facet, 'id'>): Facet {

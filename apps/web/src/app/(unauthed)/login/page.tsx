@@ -6,15 +6,19 @@ import React from 'react'
 import { signIn, signInWithGoogle } from '../../../utils/firebase/client'
 import { Button } from '../../../components/clickable'
 import { Center } from 'every-layout/src/web/center'
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
   const [loading, setLoading] = React.useState(false)
+  const router = useRouter()
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
     try {
       setLoading(true)
-      e.preventDefault()
       await signIn(e.currentTarget.email.value, e.currentTarget.password.value)
+      router.push('/browse')
     } catch (e) {
       if (typeof e === 'object' && 'code' in e) {
         switch (e.code) {
